@@ -1,74 +1,60 @@
-import {
-  Activity,
-  Component,
-  HomeIcon,
-  Mail,
-  Package,
-  ScrollText,
-  SunMoon,
-} from 'lucide-react';
+'use client';
 
+import { Mail, Github, Linkedin, HomeIcon } from 'lucide-react';
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 const data = [
   {
     title: 'Home',
-    icon: (
-      <HomeIcon className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
+    icon: <HomeIcon className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
     href: '#',
   },
   {
-    title: 'Products',
-    icon: (
-      <Package className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
-    href: '#',
+    title: 'GitHub',
+    icon: <Github className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    href: 'https://github.com/Sabique-Islam',
+    external: true,
   },
   {
-    title: 'Components',
-    icon: (
-      <Component className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
-    href: '#',
-  },
-  {
-    title: 'Activity',
-    icon: (
-      <Activity className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
-    href: '#',
-  },
-  {
-    title: 'Change Log',
-    icon: (
-      <ScrollText className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
-    href: '#',
+    title: 'LinkedIn',
+    icon: <Linkedin className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    href: 'https://www.linkedin.com/in/sabique-islam/',
+    external: true,
   },
   {
     title: 'Email',
-    icon: (
-      <Mail className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
-    href: '#',
+    icon: <Mail className='h-full w-full text-neutral-600 dark:text-neutral-300' />,
+    href: 'mailto:sabiqueislam7@gmail.com',
   },
 ];
 
 export function Navbar() {
   return (
-    <div className='absolute bottom-2 left-1/2 max-w-full -translate-x-1/2'>
+    <div className='fixed bottom-4 left-1/2 max-w-full -translate-x-1/2 z-50'>
       <Dock className='items-end pb-3'>
         {data.map((item, idx) => (
           <DockItem
             key={idx}
             className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800'
           >
-            <DockIcon>{item.icon}</DockIcon>
+            <DockLabel>{item.title}</DockLabel>
+            <DockIcon>
+              <a
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                className='block h-full w-full'
+                aria-label={item.title}
+              >
+                {item.icon}
+              </a>
+            </DockIcon>
           </DockItem>
         ))}
+
         <DockItem className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800'>
+          <DockLabel>Theme</DockLabel>
           <DockIcon>
             <ThemeToggle />
           </DockIcon>
