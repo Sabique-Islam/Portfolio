@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const data = [
   {
@@ -53,13 +54,6 @@ const data = [
     ),
     href: '#',
   },
-  {
-    title: 'Theme',
-    icon: (
-      <SunMoon className='h-full w-full text-neutral-600 dark:text-neutral-300' />
-    ),
-    href: '#',
-  },
 ];
 
 export function Navbar() {
@@ -71,10 +65,14 @@ export function Navbar() {
             key={idx}
             className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800'
           >
-            <DockLabel>{item.title}</DockLabel>
             <DockIcon>{item.icon}</DockIcon>
           </DockItem>
         ))}
+        <DockItem className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800'>
+          <DockIcon>
+            <ThemeToggle />
+          </DockIcon>
+        </DockItem>
       </Dock>
     </div>
   );
