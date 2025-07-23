@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
                 developer
                 <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black dark:bg-white" />
               </span>
-              , based in Bangalore, karnataka.
+              , based in Bangalore, Karnataka.
             </p>
 
             <Particles theme={theme} />
