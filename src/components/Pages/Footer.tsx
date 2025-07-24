@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} Sabique. All rights reserved.
           </p>
           <p className="text-xs italic">
-            "Building ideas into reality."
+            &quot;Building ideas into reality.&quot;
           </p>
         </div>
         <div className="flex gap-6">
