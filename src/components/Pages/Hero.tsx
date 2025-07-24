@@ -42,9 +42,9 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-12 font-light leading-relaxed max-w-3xl mx-auto">
-              A full-stack{" "}
+              A CSE{" "}
               <span className="text-black dark:text-white font-medium relative">
-                developer
+                Student
                 <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black dark:bg-white" />
               </span>
               , based in Bangalore, Karnataka.
