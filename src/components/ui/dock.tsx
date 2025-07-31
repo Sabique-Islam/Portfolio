@@ -132,6 +132,9 @@ function DockItem({ children, className }: DockItemProps) {
 
   const isHovered = useMotionValue(0);
 
+  // Detect touch device (no hover support)
+  const isTouchDevice = typeof window !== 'undefined' && matchMedia('(hover: none)').matches;
+
   const mouseDistance = useTransform(mouseX, (val) => {
     const domRect = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - domRect.x - domRect.width / 2;
@@ -140,7 +143,9 @@ function DockItem({ children, className }: DockItemProps) {
   const widthTransform = useTransform(
     mouseDistance,
     [-distance, 0, distance],
-    [40, magnification, 40]
+    isTouchDevice
+      ? [40, 40, 40] // mobile → disable magnification
+      : [40, magnification, 40] // desktop → normal magnification
   );
 
   const width = useSpring(widthTransform, spring);
@@ -149,24 +154,25 @@ function DockItem({ children, className }: DockItemProps) {
     <motion.div
       ref={ref}
       style={{ width }}
-      onHoverStart={() => isHovered.set(1)}
-      onHoverEnd={() => isHovered.set(0)}
-      onFocus={() => isHovered.set(1)}
-      onBlur={() => isHovered.set(0)}
-      className={cn(
-        'relative inline-flex items-center justify-center',
-        className
-      )}
+      onHoverStart={() => !isTouchDevice && isHovered.set(1)}
+      onHoverEnd={() => !isTouchDevice && isHovered.set(0)}
+      onFocus={() => !isTouchDevice && isHovered.set(1)}
+      onBlur={() => !isTouchDevice && isHovered.set(0)}
+      className={cn('relative inline-flex items-center justify-center', className)}
       tabIndex={0}
       role='button'
       aria-haspopup='true'
     >
       {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement<DockLabelProps | DockIconProps>, { width, isHovered })
+        cloneElement(child as React.ReactElement<DockLabelProps | DockIconProps>, {
+          width,
+          isHovered,
+        })
       )}
     </motion.div>
   );
 }
+
 
 function DockLabel({ children, className, ...rest }: DockLabelProps) {
   const restProps = rest as Record<string, unknown>;

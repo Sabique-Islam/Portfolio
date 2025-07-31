@@ -53,6 +53,7 @@ export function Navbar() {
           </DockItem>
         ))}
 
+        {/* Theme toggle */}
         <DockItem className='aspect-square rounded-full bg-gray-200 dark:bg-neutral-800'>
           <DockLabel>Theme</DockLabel>
           <DockIcon>
