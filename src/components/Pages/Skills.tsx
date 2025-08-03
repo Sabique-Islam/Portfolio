@@ -27,7 +27,7 @@ function Skills() {
   return (
     <section className="min-h-screen bg-white dark:bg-black text-black dark:text-white py-16 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
       {/* Subtle background decoration */}
-      <div className="absolute inset-0 opacity-[0.01] dark:opacity-[0.03]">
+      <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-black dark:bg-white rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-black dark:bg-white rounded-full blur-3xl"></div>
       </div>
