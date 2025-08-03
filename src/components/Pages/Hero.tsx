@@ -4,7 +4,7 @@ import React from "react";
 import { useTheme } from "next-themes";
 import Particles from "@/components/ui/particles";
 import Glow from "@/components/ui/glow";
-import { Twitter, Github, Linkedin } from "lucide-react";
+import { Twitter, Github, Linkedin, Files } from "lucide-react";
 
 const Hero: React.FC = () => {
   const { theme } = useTheme();
@@ -39,7 +39,9 @@ const Hero: React.FC = () => {
               className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-transform duration-200 hover:scale-110"
             >
               <Linkedin size={28} />
-              <span className="mt-1 text-xs sm:text-sm font-medium">LinkedIn</span>
+              <span className="mt-1 text-xs sm:text-sm font-medium">
+                LinkedIn
+              </span>
             </a>
 
             <a
@@ -49,7 +51,9 @@ const Hero: React.FC = () => {
               className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-transform duration-200 hover:scale-110"
             >
               <Github size={28} />
-              <span className="mt-1 text-xs sm:text-sm font-medium">GitHub</span>
+              <span className="mt-1 text-xs sm:text-sm font-medium">
+                GitHub
+              </span>
             </a>
 
             <a
@@ -60,6 +64,16 @@ const Hero: React.FC = () => {
             >
               <Twitter size={28} />
               <span className="mt-1 text-xs sm:text-sm font-medium">X</span>
+            </a>
+
+            <a
+              href="https://inxcribe.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-sky-500 transition-transform duration-200 hover:scale-110"
+            >
+              <Files size={28} />
+              <span className="mt-1 text-xs sm:text-sm font-medium">Blog</span>
             </a>
           </div>
 
