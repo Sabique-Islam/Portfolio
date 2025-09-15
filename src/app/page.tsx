@@ -1,17 +1,24 @@
+"use client";
+
 import Footer from "@/components/Pages/Footer";
 import Hero from "@/components/Pages/Hero";
-import { Navbar } from "@/components/Pages/Navbar";
 import Projects from "@/components/Pages/Projects";
 import Skills from "@/components/Pages/Skills";
+import { ThemeToggle } from "@/components/theme-toggle";
+import ScrollToTopOnReload from "@/components/ScrollToTopOnReload";
 
 export default function Home() {
   return (
-    <div>
-      <Hero/>
-      <Projects/>
-      <Skills/>
-      <Navbar/>
-      <Footer/>
+    <div className="min-h-screen bg-background text-foreground">
+      <ScrollToTopOnReload />
+      <ThemeToggle />
+      
+      <main>
+        <Hero />
+        <Projects />
+        <Skills />
+        <Footer />
+      </main>
     </div>
   );
 }

@@ -6,18 +6,33 @@ import { useTheme } from "next-themes"
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
   }
 
+  if (!mounted) {
+    return (
+      <div className="w-9 h-9 bg-muted animate-pulse rounded-md" />
+    );
+  }
+
   return (
-    <div 
+    <button
       onClick={toggleTheme}
-      className="relative h-full w-full text-neutral-600 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-neutral-100 transition-colors cursor-pointer flex items-center justify-center"
+      className="fixed top-4 right-4 z-50 p-2 rounded-md bg-background/80 backdrop-blur-sm hover:bg-muted transition-all duration-200 terminal-link"
+      aria-label="Toggle theme"
     >
-      <Sun className="h-full w-full rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute inset-0 h-full w-full rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-    </div>
+      {theme === "dark" ? (
+        <Sun className="h-5 w-5 text-primary" />
+      ) : (
+        <Moon className="h-5 w-5 text-primary" />
+      )}
+    </button>
   )
 }

@@ -1,22 +1,51 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fira_Code } from "next/font/google";
 import "./globals.css";
+import ReactLenis from "lenis/react";
 import { ThemeProvider } from "@/components/theme-provider"
-import ScrollToTopOnReload from "@/components/ScrollToTopOnReload";
 
-import { SEO_CONFIG } from "./seo";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = SEO_CONFIG.metadata;
+export const metadata: Metadata = {
+  title: "Sabique Islam | Portfolio",
+  description: "Computer Science Engineering student passionate about building innovative solutions. Explore my projects in machine learning, web development, and software engineering.",
+  keywords: ["Sabique Islam", "Portfolio", "Computer Science", "Machine Learning", "Web Development", "Software Engineer"],
+  authors: [{ name: "Sabique Islam" }],
+  creator: "Sabique Islam",
+  publisher: "Sabique Islam",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://sabique.page",
+    siteName: "Sabique | Portfolio",
+    title: "Sabique | Portfolio",
+    description: "Computer Science Engineering student passionate about building innovative solutions. Explore my projects in machine learning, web development, and software engineering.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sabique | Portfolio",
+    description: "Computer Science Engineering student passionate about building innovative solutions.",
+    creator: "@nopeJS",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "mIo3P0IZTuqEjLnewHE-0WMcJrPieDymtHbCfXZnflw",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -26,21 +55,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content="mIo3P0IZTuqEjLnewHE-0WMcJrPieDymtHbCfXZnflw" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(SEO_CONFIG.schema),
-          }}
-        />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ScrollToTopOnReload />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+      <body className={`${firaCode.variable} antialiased font-mono`}>
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem={true}
+          disableTransitionOnChange={false}
+        >
+          <ReactLenis root>{children}</ReactLenis>
         </ThemeProvider>
       </body>
     </html>
