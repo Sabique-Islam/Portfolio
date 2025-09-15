@@ -1,87 +1,181 @@
 "use client";
 
 import React from "react";
-import { useTheme } from "next-themes";
-import Particles from "@/components/ui/particles";
-import Glow from "@/components/ui/glow";
-import { Twitter, Github, Linkedin, Files } from "lucide-react";
+import { motion } from "framer-motion";
+import { TypingAnimation } from "@/components/ui/TypingAnimation";
+import { Github, Linkedin, Twitter, ExternalLink, FileText } from "lucide-react";
 
 const Hero: React.FC = () => {
-  const { theme } = useTheme();
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <div className="relative min-h-screen bg-white dark:bg-black transition-colors duration-500">
-      <div className="relative z-20 flex items-center justify-center min-h-screen px-4">
-        <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-black dark:text-white mb-6 leading-tight select-none">
-            Hey, I&apos;m{" "}
-            <span className="relative text-black dark:text-white">
-              Sabique
-              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-black dark:bg-white" />
-            </span>
-          </h1>
+    <section className="min-h-screen bg-background text-foreground flex items-start justify-center px-4 pt-16 terminal">
+      <div className="max-w-4xl mx-auto text-left">
+        {/* Terminal Prompt */}
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="terminal-prompt text-sm sm:text-base">sabique@portfolio:~$</span>
+        </motion.div>
 
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-10 font-light leading-relaxed max-w-3xl mx-auto">
-            A CSE{" "}
-            <span className="text-black dark:text-white font-medium relative">
-              Student
-              <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-black dark:bg-white" />
-            </span>
-            , based in Bangalore, Karnataka.
-          </p>
+        {/* Main Heading */}
+        <motion.h1 
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 terminal-text"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
+          # Sabique Islam
+        </motion.h1>
 
-          {/* Social Links */}
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 mb-12">
-            <a
-              href="https://www.linkedin.com/in/sabique-islam/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-transform duration-200 hover:scale-110"
-            >
-              <Linkedin size={28} />
-              <span className="mt-1 text-xs sm:text-sm font-medium">
-                LinkedIn
-              </span>
-            </a>
+        {/* Sub-heading with typing animation */}
+        <motion.div 
+          className="mb-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          <h2 className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-2 terminal-text">
+            ## <TypingAnimation 
+              text="A CSE Student, based in Bangalore, Karnataka." 
+              delay={1200}
+              speed={100}
+            />
+          </h2>
 
-            <a
-              href="https://github.com/Sabique-Islam"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-transform duration-200 hover:scale-110"
-            >
-              <Github size={28} />
-              <span className="mt-1 text-xs sm:text-sm font-medium">
-                GitHub
-              </span>
-            </a>
+        </motion.div>
 
-            <a
-              href="https://x.com/Sabique_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-sky-500 transition-transform duration-200 hover:scale-110"
-            >
-              <Twitter size={28} />
-              <span className="mt-1 text-xs sm:text-sm font-medium">X</span>
-            </a>
+        {/* CTA Buttons */}
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-4 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          <motion.button
+            onClick={scrollToProjects}
+            className="px-6 py-3 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 terminal-link font-mono"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View Work
+          </motion.button>
+          <motion.button
+            onClick={scrollToContact}
+            className="px-6 py-3 bg-primary text-primary-foreground hover:opacity-80 transition-all duration-200 font-mono"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Contact
+          </motion.button>
+        </motion.div>
 
-            <a
-              href="https://inxcribe.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-sky-500 transition-transform duration-200 hover:scale-110"
-            >
-              <Files size={28} />
-              <span className="mt-1 text-xs sm:text-sm font-medium">Blog</span>
-            </a>
+        {/* About Section */}
+        <motion.div 
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+        >
+          {/* Terminal Prompt for About */}
+          <div className="mb-4">
+            <span className="terminal-prompt text-sm sm:text-base">sabique@portfolio:~$ cat about.txt</span>
           </div>
 
-          <Particles theme={theme} />
-          <Glow theme={theme} />
-        </div>
+          {/* Heading */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 terminal-text">
+            ## About Me
+          </h2>
+
+          {/* Description */}
+          <div className="space-y-4 text-base sm:text-lg text-muted-foreground terminal-text">
+            <p>
+              I build web apps, and occasionally tinker with machine learning and low-level programming.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div 
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
+        >
+          {/* Terminal Prompt for Social */}
+          <div className="mb-6">
+            <span className="terminal-prompt text-sm sm:text-base">~/connect --social</span>
+          </div>
+
+          {/* Social Links Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                name: "LinkedIn",
+                url: "https://www.linkedin.com/in/sabique-islam/",
+                icon: "linkedin",
+                description: "Professional network"
+              },
+              {
+                name: "GitHub",
+                url: "https://github.com/Sabique-Islam",
+                icon: "github",
+                description: "Code repositories"
+              },
+              {
+                name: "X",
+                url: "https://x.com/nopeJS",
+                icon: "twitter",
+                description: "Tech updates & thoughts"
+              },
+              {
+                name: "Blog",
+                url: "https://inscribe.studio/",
+                icon: "fileText",
+                description: "Technical writing"
+              }
+            ].map((link, index) => (
+              <motion.a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="terminal-card group transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.3 + index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="flex items-center space-x-3 mb-2">
+                  {link.icon === "linkedin" && <Linkedin className="w-6 h-6 text-primary" />}
+                  {link.icon === "github" && <Github className="w-6 h-6 text-primary" />}
+                  {link.icon === "twitter" && <Twitter className="w-6 h-6 text-primary" />}
+                  {link.icon === "fileText" && <FileText className="w-6 h-6 text-primary" />}
+                  <ExternalLink className="w-4 h-4 text-muted-foreground ml-auto" />
+                </div>
+                
+                <h3 className="font-semibold text-foreground mb-1 terminal-text">
+                  {link.name}
+                </h3>
+                
+                <p className="text-sm text-muted-foreground terminal-text">
+                  {link.description}
+                </p>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

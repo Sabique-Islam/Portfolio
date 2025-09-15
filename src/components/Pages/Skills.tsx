@@ -1,11 +1,7 @@
+"use client";
+
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/shadcn-card";
-import { Code, Layers, Wrench, Cloud } from "lucide-react";
+import { motion } from "framer-motion";
 
 type SkillCategory = "Languages" | "Frameworks" | "Tools" | "Platforms";
 
@@ -17,56 +13,158 @@ function Skills() {
     Platforms: ["GitHub", "Google Colab"],
   };
 
-  const categoryIcons: Record<SkillCategory, React.ReactNode> = {
-    Languages: <Code className="w-8 h-8" />,
-    Frameworks: <Layers className="w-8 h-8" />,
-    Tools: <Wrench className="w-8 h-8" />,
-    Platforms: <Cloud className="w-8 h-8" />,
-  };
-
   return (
-    <section className="min-h-screen bg-white dark:bg-black text-black dark:text-white py-16 px-4 sm:px-6 lg:px-12 relative overflow-hidden">
+    <section className="py-16 px-4 bg-background text-foreground terminal" id="skills">
+      <div className="max-w-4xl mx-auto">
+        {/* Terminal Prompt */}
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <span className="terminal-prompt text-sm sm:text-base">sabique@portfolio:~$ cat skills.json</span>
+        </motion.div>
 
-      <div className="max-w-5xl mx-auto relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-black dark:text-white">
-            Skills & Technologies
+        {/* Content Block */}
+        <motion.div 
+          className="terminal-card"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 terminal-text">
+            ## Skills
           </h2>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
-          {Object.entries(skills).map(([category, items]) => (
-            <Card
-              key={category}
-              className="bg-white dark:bg-black border border-black dark:border-white rounded-3xl"
+          {/* Skills Categories */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* First Row: Languages and Frameworks */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="space-y-2"
             >
-              <CardHeader className="flex flex-col items-center justify-center space-y-5 py-10 px-8">
-                <div className="relative">
-                  <div className="p-5 rounded-2xl bg-black dark:bg-white">
-                    <div className="text-white dark:text-black">
-                      {categoryIcons[category as SkillCategory]}
-                    </div>
-                  </div>
-                </div>
-                <CardTitle className="text-2xl font-bold text-center tracking-tight text-black dark:text-white">
-                  {category}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="px-8 pb-10">
-                <div className="flex flex-wrap gap-3 justify-center">
-                  {items.map((skill) => (
-                    <span
-                      key={skill}
-                      className="bg-black dark:bg-white text-white dark:text-black rounded-xl px-5 py-2.5 text-base font-semibold border border-black dark:border-white"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              <h3 className="text-lg sm:text-xl font-semibold text-primary terminal-text">
+                Languages:
+              </h3>
+              <div className="ml-4 space-y-1">
+                {skills.Languages.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: 0.1 + skillIndex * 0.05 
+                    }}
+                    viewport={{ once: true }}
+                    className="flex items-center space-x-2 text-muted-foreground terminal-text"
+                  >
+                    <span className="text-primary">•</span>
+                    <span>{skill}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-2"
+            >
+              <h3 className="text-lg sm:text-xl font-semibold text-primary terminal-text">
+                Frameworks:
+              </h3>
+              <div className="ml-4 space-y-1">
+                {skills.Frameworks.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: 0.2 + skillIndex * 0.05 
+                    }}
+                    viewport={{ once: true }}
+                    className="flex items-center space-x-2 text-muted-foreground terminal-text"
+                  >
+                    <span className="text-primary">•</span>
+                    <span>{skill}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Second Row: Tools and Platforms */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="space-y-2"
+            >
+              <h3 className="text-lg sm:text-xl font-semibold text-primary terminal-text">
+                Tools:
+              </h3>
+              <div className="ml-4 space-y-1">
+                {skills.Tools.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: 0.3 + skillIndex * 0.05 
+                    }}
+                    viewport={{ once: true }}
+                    className="flex items-center space-x-2 text-muted-foreground terminal-text"
+                  >
+                    <span className="text-primary">•</span>
+                    <span>{skill}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="space-y-2"
+            >
+              <h3 className="text-lg sm:text-xl font-semibold text-primary terminal-text">
+                Platforms:
+              </h3>
+              <div className="ml-4 space-y-1">
+                {skills.Platforms.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: 0.4 + skillIndex * 0.05 
+                    }}
+                    viewport={{ once: true }}
+                    className="flex items-center space-x-2 text-muted-foreground terminal-text"
+                  >
+                    <span className="text-primary">•</span>
+                    <span>{skill}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
