@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { TypingAnimation } from "@/components/ui/TypingAnimation";
 import { Github, Linkedin, Twitter, ExternalLink, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Hero: React.FC = () => {
   const scrollToProjects = () => {
@@ -15,7 +16,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen bg-background text-foreground flex items-start justify-center px-4 pt-16 terminal">
+    <section className="bg-background text-foreground flex items-start justify-center px-4 pt-16 terminal">
       <div className="max-w-4xl mx-auto text-left">
         {/* Terminal Prompt */}
         <motion.div 
@@ -61,22 +62,35 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <motion.button
+          <Button
             onClick={scrollToProjects}
-            className="px-6 py-3 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 terminal-link font-mono"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variant="outline"
+            className="font-mono cursor-pointer"
           >
             View Work
-          </motion.button>
-          <motion.button
+          </Button>
+          <Button
             onClick={scrollToContact}
-            className="px-6 py-3 bg-primary text-primary-foreground hover:opacity-80 transition-all duration-200 font-mono"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variant="default"
+            className="font-mono cursor-pointer"
           >
             Contact
-          </motion.button>
+          </Button>
+          <Button
+            asChild
+            variant="secondary"
+            className="font-mono cursor-pointer"
+          >
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <FileText className="w-5 h-5" />
+              Resume
+            </a>
+          </Button>
         </motion.div>
 
         {/* About Section */}
