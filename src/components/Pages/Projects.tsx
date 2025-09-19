@@ -87,8 +87,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
 const Projects: React.FC = () => {
   return (
-    <section className="py-16 px-4 bg-background text-foreground terminal" id="projects">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-10 px-2 bg-background text-foreground terminal" id="projects">
+      <div className="max-w-4xl mx-auto">
         {/* Terminal Prompt */}
         <motion.div 
           className="mb-8"
